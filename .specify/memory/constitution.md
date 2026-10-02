@@ -1,50 +1,74 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version change: template → 1.0.0
+- Modified principles: none; initial constitution established
+- Added sections: Core Principles, Technical Constraints, Development Workflow, Governance
+- Removed sections: none
+- Follow-up TODOs: none
+-->
+
+# Planejador BNCC Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Specification Before Code
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Every change MUST define its expected behavior and acceptance criteria before implementation.
+Work is ready for code only when those criteria can be verified.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Clear Trust Boundaries
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+Frontend, API, and external integrations MUST remain separate. Secrets and credentials MUST stay
+server-side and MUST NOT be exposed to clients or committed to the repository.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. Teacher-Owned Access
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Every request that reads or changes plans MUST authenticate the teacher and authorize ownership of
+each requested plan. Cross-teacher access MUST be denied.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. AI Produces Reviewable Drafts
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+AI-generated content MUST be stored and presented as an editable draft. A plan MUST require teacher
+review and confirmation before it is treated as final.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### V. Validated, Atomic Operations
+
+Inputs and external responses MUST be validated at their boundaries. A failed generation or
+integration MUST leave no partial plan persisted.
+
+### VI. Reproducible Data Evolution
+
+Schema changes MUST use versioned migrations, and required baseline data MUST use reproducible
+seeds. A clean environment MUST be rebuildable from versioned artifacts.
+
+### VII. Figma-Aligned Accessible Interface
+
+UI components and tokens MUST match the project's Figma Design System. User-facing flows MUST be
+accessible and responsive at desktop, tablet, and mobile breakpoints.
+
+### VIII. Verifiable Delivery and Safe Versioning
+
+Critical behaviors MUST have automated tests. The execution procedure and versioned artifacts MUST
+be documented; `.env` files and credentials MUST never be versioned.
+
+## Technical Constraints
+
+External providers are accessed only through the API boundary. Validation errors and provider
+failures must return actionable error states without exposing secrets or creating incomplete data.
+
+## Development Workflow
+
+Each feature specification MUST state acceptance criteria before implementation. Changes MUST pass
+the relevant automated tests and responsive/accessibility checks before review. Migrations, seeds,
+and runtime instructions required to reproduce a change MUST accompany that change.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution governs feature specifications, plans, tasks, implementation, and review. Any
+amendment MUST document its rationale, update this file, and use semantic versioning: MAJOR for
+incompatible principle changes, MINOR for new or materially expanded governance, and PATCH for
+clarifications. Every review MUST verify the applicable principles and reject changes that expose
+credentials, bypass ownership authorization, persist partial plans, or contradict the Figma Design
+System without an approved amendment.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-10-02 | **Last Amended**: 2026-10-02
